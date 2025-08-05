@@ -6,7 +6,7 @@ def bubble_sort(a, n):
     return a
 
 
-def counting_sort(data, k):
+def counting_sort(data, k=100):
     counts = [0] * (k+1)
     temp = [0] * len(data)
 
@@ -26,12 +26,12 @@ def counting_sort(data, k):
 for test_case in range(1, 11):
     dump_count = int(input())
     height = list(map(int, input().split()))
-    sorted_height = counting_sort(height, 99)
+    sorted_height = counting_sort(height)
 
     for dump in range(dump_count):
         sorted_height[0] += 1
         sorted_height[-1] -= 1
-        bub_sorted_height = bubble_sort(sorted_height, 100)
+        bub_sorted_height = bubble_sort(sorted_height, len(sorted_height))
         sorted_height = bub_sorted_height
 
     print(f'#{test_case} {sorted_height[-1] - sorted_height[0]}')
