@@ -13,4 +13,6 @@ for t in range(1, T+1):
                 matrix[i][j+1] = matrix[i-1][j] + matrix[i-1][j+1]
         results.append(matrix[i][:i+1])
 
-    print(f'#{t}\n{[result for result in results]}')
+    print(f'#{t}')
+    for result in results:
+        print(' '.join(map(str, result)))
