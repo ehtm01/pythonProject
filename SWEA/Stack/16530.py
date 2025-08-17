@@ -9,11 +9,7 @@ for tc in range(1, T+1):
     b = 0
 
     for i in range(N):
-        if string[i] not in ('+', '-', '*', '/'):
-            stack.append(string[i])
-        elif string[i] == '.':
-            print(f'#{tc} {stack.pop()}')
-        else:
+        if string[i] in ('+', '-', '*', '/'):
             if len(stack) > 1:
                 a = int(stack.pop())
                 b = int(stack.pop())
@@ -25,5 +21,14 @@ for tc in range(1, T+1):
                     stack.append(b * a)
                 elif string[i] == '/':
                     stack.append(b // a)
+            else:
+                stack = ['error']
+                break
+        elif string[i] == '.':
+            break
+        else:
+            stack.append(string[i])
+    if len(stack) > 1:
+        stack = ['error']
 
     print(f'#{tc} {stack.pop()}')
