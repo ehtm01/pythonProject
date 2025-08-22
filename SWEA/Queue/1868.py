@@ -6,3 +6,4 @@ for tc in range(1, T+1):
     mine = [input() for _ in range(N)]
 
     def minesweeper():
+        pass
