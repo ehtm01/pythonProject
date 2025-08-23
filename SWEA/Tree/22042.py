@@ -6,10 +6,25 @@ T = int(input())
 for tc in range(1, T + 1):
     N = int(input())
     tree = list(map(int, input().split()))
-    q = deque
-    q.append(tree[0])
-    visited = [0] * (N + 1)
-    visited[tree[0]] = 1
+    q = deque()
+    n = 1
+    ok = True
+    for i in range(N):
+        q.append(tree[i])
 
-    while q:
-        x = q.popleft()
+    if q.popleft() == 1:
+        while q:
+            left = []
+            right = []
+            for i in range(n):
+                left.append(q.popleft())
+            for j in range(n):
+                right.append(q.popleft())
+            if left != right[::-1]:
+                ok = False
+                break
+            n *= 2
+    else:
+        ok = False
+
+    print(f'#{tc} {ok}')
