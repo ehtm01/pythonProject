@@ -1,29 +1,42 @@
 # 14510. 나무 높이
+import sys
+sys.stdin = open('input.txt.', 'r')
+
 T = int(input())
 
-for x in range(1, T+1):
+for tc in range(1, T+1):
     N = int(input())
-    height = list(map(int, input().split()))
-    date = 0
-    height.sort()
+    H = list(map(int, input().split()))
+    day = 0
+    odd = []
+    even = []
 
-    while len(set(height)) != 1:
-        date += 1
-        if height[-1] - height[0] == 2:
-            if date % 2 == 0:
-                height[0] += 2
-            elif height[1] - height[0] == 1 and height[1] != height[-1]:
-                height[1] += 1
-        elif height[-1] - height[0] == 1:
-            if date % 2 == 1:
-                height[0] += 1
-            elif height[1] - height[0] == 1 and height[1] != height[-1]:
-                height[1] += 2
+    for n in H:
+        diff = max(H) - n
+        if diff % 2 == 1:
+            odd.append(1)
+            if diff != 1:
+                even.append(diff - 1)
+        elif diff != 0:
+            even.append(diff)
+
+    while odd:
+        even.sort()
+        if even:
+            even[-1] -= 2
+            if not even[-1]:
+                even.pop()
+            day += 1
         else:
-            if date % 2 == 0:
-                height[0] += 2
-            else:
-                height[0] += 1
-        height.sort()
+            break
+        odd.pop()
+        day += 1
 
-    print(f'#{x} {date}')
+    if odd:
+        day += len(odd) * 2 - 1
+
+    if even:
+        k = sum(even) % 3
+        day += (sum(even) // 3) * 2 + k
+
+    print(f'#{tc} {day}')
