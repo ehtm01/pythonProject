@@ -8,15 +8,17 @@ for tc in range(1, T + 1):
     N = int(input())
     people = list(map(int, input().split()))
 
-    for i in range(N):
-        for j in range(i + 1, N):
-            if people[i] == people[j]:
-                people[i] = people[j] = 10001
+    remain_id = [0] * 20001
+    for p in people:
+        if not remain_id[p]:
+            remain_id[p] = 1
+        else:
+            remain_id[p] ^= 1
+    print(remain_id.index(1))
 
-    result = []
+    result = remain_id.index(1)
 
-    for i in people:
-        if i != 10001:
-            result.append(i)
+    if remain_id.index(1) > 10000:
+        result -= 20001
 
-    print(f'#{tc} {"".join(map(str, result))}')
+    print(f'#{tc} {result}')
