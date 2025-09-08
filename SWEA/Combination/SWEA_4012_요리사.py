@@ -2,44 +2,35 @@
 import sys
 sys.stdin = open("input.txt", "r")
 
+
+def cook(team):
+    total = 0
+    for i in range(len(team)):
+        for j in range(i + 1, len(team)):
+            a, b = team[i], team[j]
+            total += matrix[a][b] + matrix[b][a]
+    return total
+
+
 T = int(input())
 
 for tc in range(1, T + 1):
     N = int(input())
     matrix = [list(map(int, input().split())) for _ in range(N)]
-    foods = list(range(N))
-    case = []
 
-    for i in range(1 << N):
+    case = []
+    for idx in range(1 << N):
+        mask = idx
         arr = []
         for n in range(N):
-            if i & 0x1:
-                arr.append(foods[n])
-            i >>= 1
-        if len(arr) == N / 2:
+            if mask & 0x1:
+                arr.append(n)
+            mask >>= 1
+        if len(arr) == N // 2:
             case.append(arr)
     results = []
 
-    subset = []
-    A = B = 0
+    for idx in range(len(case) // 2):
+        results.append(abs(cook(case[idx]) - cook(case[-1 - idx])))
 
-    def cook(idx, start):
-        global A, B
-        if idx == N // 2:
-            x, y = subset[0], subset[1]
-            a, b = N - subset[0] - 1, N - subset[1] - 1
-            A += (matrix[x][y] + matrix[y][x])
-            B += (matrix[a][b] + matrix[b][a])
-            return
-
-        for i in range(len(case) // 2):
-            for j in range(start, N // 2):
-                subset.append(case[i][j])
-                cook(idx + 1, j + 1)
-                subset.pop(0)
-            results.append(abs(A - B))
-
-    cook(0, 0)
-
-    # print(case)
-    print(min(results))
+    print(f'#{tc} {min(results)}')
