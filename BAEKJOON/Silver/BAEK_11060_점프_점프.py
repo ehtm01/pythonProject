@@ -1,4 +1,8 @@
 # BAEK 11060. 점프 점프
+N = int(input())
+A = list(map(int, input().split()))
+
+
 # 1) 선형 큐 버전
 def maze_q():
     q = [0]     # 큐 생성
@@ -95,9 +99,6 @@ def maze_cq():
     # 반환값 없이 반복문 종료시 -1 반환
     return -1
 
-
-N = int(input())
-A = list(map(int, input().split()))
 
 print(maze_cq())
 print(maze_q())
