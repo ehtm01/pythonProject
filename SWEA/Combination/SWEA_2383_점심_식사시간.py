@@ -16,6 +16,15 @@ for tc in range(1, T + 1):
                 stair.append((i, j, matrix[i][j]))
             elif matrix[i][j] == 1:
                 people.append((i, j))
+    # 사람들이 두 계단 중 하나를 고르는 조합 만들기
+    # (1번 계단, 2번 계단)
+    time_to_1 = []
+    time_to_2 = []
+
+    def comb():
+        for i in people:
+            time_to_1.append(i)
+
 
     # s1_r, s1_c = stair[0][0], stair[0][1]
     # s2_r, s2_c = stair[1][0], stair[1][1]

@@ -29,9 +29,8 @@ for tc in range(1, T + 1):
         if len(arr) == N // 2:
             case.append(arr)
     results = []
-    print(case)
 
     for idx in range(len(case) // 2):
         results.append(abs(cook(case[idx]) - cook(case[-1 - idx])))
 
-    # print(f'#{tc} {min(results)}')
+    print(f'#{tc} {min(results)}')
