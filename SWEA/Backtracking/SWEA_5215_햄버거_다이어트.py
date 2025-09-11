@@ -14,6 +14,7 @@ def backtrack(idx, sum_s, sum_c):
     backtrack(idx + 1, sum_s + combo[idx][0], sum_c + combo[idx][1])
     backtrack(idx + 1, sum_s, sum_c)
 
+
 T = int(input())
 
 for tc in range(1, T +1):
