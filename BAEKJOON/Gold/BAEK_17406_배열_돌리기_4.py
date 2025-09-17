@@ -5,8 +5,8 @@ from copy import deepcopy
 
 
 # 배열 회전시켜야 함
-# temp값 하나 잡고 나머지 4면으로 돌리자
-# 마지막에 temp값 넣어주면 끝
+# 4면을 분리해서 계산해보자.
+# 한 쪽 모서리를 temp 값으로 잡고 맨 마지막에 추가해준다.
 def spin(row, col, step, matrix):
     temp = matrix[row][col + step]
     for j in range(step, 0, -1):
