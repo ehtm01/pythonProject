@@ -12,8 +12,6 @@ def fold(length, array):    # 배열과 배열 길이를 함수 인자로 받음
             return 'Alice'
         else:
             return 'Bob'
-
-
     ceil = length // 2  # 중간값 설정
     a = []              # 수정될 배열 저장할 리스트
     # 반으로 나눠서 반대편 값과 더해줌
