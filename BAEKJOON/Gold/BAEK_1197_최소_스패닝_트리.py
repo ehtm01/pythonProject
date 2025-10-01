@@ -5,13 +5,17 @@ sys.setrecursionlimit(100000)
 
 V, E = map(int, input().split())
 
+# Kruskal
+# 입력값 저장할 경로 배열 설정
 route = []
 for _ in range(E):
     A, B, C = map(int, input().split())
     route.append((A, B, C))
 
+# 가중치 오름차순으로 배열 정렬
 route.sort(key=lambda x: x[2])
 
+# make_set
 p = list(range(V + 1))
 
 
