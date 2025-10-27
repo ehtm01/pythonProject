@@ -1,4 +1,5 @@
 # BAEK 17298. 오큰수
+# 스택 사용
 import sys
 sys.stdin = open('input.txt', 'r')
 
