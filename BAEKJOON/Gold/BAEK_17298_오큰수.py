@@ -7,7 +7,7 @@ N = int(input())
 A = list(map(int, input().split()))
 
 stack = []  # stack 사용
-ans = [0] * N   # 정답 배열
+ans = [-1] * N   # 정답 배열
 # N 번 반복(위치 인덱스)
 for i in range(N):
     # 스택이 비어있으면 인덱스 그대로 추가
@@ -32,13 +32,5 @@ for i in range(N):
         # 앞 자릿수가 더 크면 그대로 스택에 추가
         else:
             stack.append(i)
-
-# 비교가 끝내고 스택이 남아있다면
-# 오큰수가 없다는 의미
-# 정답 배열의 인덱스 자리에 전부 -1 추가
-if stack:
-    for k in range(len(stack)):
-        ans[stack[k]] = -1
-    stack = []
 
 print(*ans)
