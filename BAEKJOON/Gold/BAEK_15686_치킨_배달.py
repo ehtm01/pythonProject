@@ -14,16 +14,15 @@ grid = [list(map(int, input().split())) for _ in range(N)]
 # 5) 조합별 도시의 치킨 거리 비교해서 최솟값 탐색
 
 
-
 def cal(comb_lst):
     sum_dist = 0
+    chicken_dists = [[[] for _ in range(N)] for _ in range(N)]
     for k in range(M):
         y, x = stores[comb_lst[k]]
         for i in range(N):
             for j in range(N):
                 # 3)
                 if grid[i][j] == 1:
-                    print(comb_lst[k], (abs(y - i) + abs(x - j)))
                     chicken_dists[i][j].append((abs(y - i) + abs(x - j)))
 
     for i in range(N):
@@ -31,7 +30,6 @@ def cal(comb_lst):
             # 4)
             if chicken_dists[i][j]:
                 sum_dist += min(chicken_dists[i][j])
-    print(sum_dist)
     return sum_dist
 
 
@@ -39,7 +37,6 @@ def make_comb(start, comb_lst):
     global res
 
     if len(comb_lst) == M:
-        print(comb_lst)
         res = min(res, cal(comb_lst))
 
     L = len(stores)
@@ -49,7 +46,6 @@ def make_comb(start, comb_lst):
         comb_lst.pop()
 
 
-chicken_dists = [[[] for _ in range(N)] for _ in range(N)]
 res = float('inf')
 # 1)
 stores = []
