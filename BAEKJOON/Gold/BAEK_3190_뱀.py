@@ -1,7 +1,7 @@
 # BAEK 3190. 뱀
+from collections import deque
 import sys
 sys.stdin = open('input.txt', 'r')
-from collections import deque
 
 # 입력부
 N = int(input())
@@ -53,14 +53,12 @@ def move_str(y, x, d):
     ny, nx = y + d[0], x + d[1]
     if ny < 0 or ny >= N or nx < 0 or nx >= N:
         return -1, -1
+    if grid[ny][nx] == 1:
+        return -1, -1
     # 사과를 안 먹었을 때는 꼬리 위치를 비워준다.
     if grid[ny][nx] == 0:
         by, bx = bodies.popleft()
         grid[by][bx] = 0
-    # 늦게 확인하는 이유:
-    # 머리가 꼬리를 향할 때 꼬리를 먼저 빼주고 머리가 들어갈 수 있기 때문
-    if grid[ny][nx] == 1:
-        return -1, -1
     bodies.append((ny, nx))
     grid[ny][nx] = 1
     return ny, nx
