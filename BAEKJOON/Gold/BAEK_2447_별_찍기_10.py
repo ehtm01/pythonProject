@@ -9,3 +9,4 @@ k = int(log(N, 3))
 matrix = ['*' * N for _ in range(N)]
 
 if k == 1:
+    print('*')
