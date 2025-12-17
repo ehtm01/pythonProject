@@ -17,7 +17,6 @@ dp = [[float('inf')] * M for _ in range(N)]
 dp[0][0] = 0
 q = deque([(0, 0)])     # 덱 사용
 d = (0, 1), (1, 0), (0, -1), (-1, 0)
-res = []
 
 while q:
     y, x = q.popleft()
