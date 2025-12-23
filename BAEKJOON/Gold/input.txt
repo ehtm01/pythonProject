@@ -1,6 +1,6 @@
-5 5
-.xx..
-..x..
-.....
-...x.
-...x.
+5
+X S X X T
+T X S X X
+X X X X X
+X T X X X
+X X T X X
