@@ -15,3 +15,4 @@ N = int(input())
 grid = [list(map(str, input().split())) for _ in range(N)]
 
 # 1. 학생과 선생이 인접하면 바로 종료
+# 2.
