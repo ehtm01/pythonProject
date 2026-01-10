@@ -21,4 +21,4 @@ for i in range(n):
             t += w - 1
         t += 1
 
-print(t + w - 1)
+print(t + w)
