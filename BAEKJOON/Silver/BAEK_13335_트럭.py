@@ -1,5 +1,6 @@
 # BAEK 13335. 트럭
 import sys
+from collections import deque
 sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
 
@@ -9,16 +10,20 @@ input = sys.stdin.readline
 
 n, w, L = map(int, input().split())
 trucks = list(map(int, input().split()))
-t = 0
-weight = 0
+time = weight = idx = 0
 
-for i in range(n):
-    if w == 1:
-        t += 1
-    else:
-        weight += trucks[i]
-        if weight > L:
-            t += w - 1
-        t += 1
+# 빈 다리위를 0으로 채움
+bridge = deque([0] * w)
 
-print(t + w)
+while idx < n or weight > 0:
+    time += 1
+    weight -= bridge.popleft()
+    if idx < n:
+        if weight + trucks[idx] <= L:
+            bridge.append(trucks[idx])
+            weight += trucks[idx]
+            idx += 1
+        else:
+            bridge.append(0)
+
+print(time)
