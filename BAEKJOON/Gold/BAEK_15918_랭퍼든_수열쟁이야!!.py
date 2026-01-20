@@ -36,7 +36,7 @@ def backtrack(cnt):
     if array[cnt]:
         backtrack(cnt + 1)
     else:
-        for x in range(n + 1):
+        for x in range(1, n + 1):
             if not visited[x] and cnt + x + 1 < 2 * n + 1 and array[cnt + x + 1] == 0:
                 array[cnt] = array[cnt + x + 1] = x
                 visited[x] = True
