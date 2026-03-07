@@ -6,28 +6,23 @@ N = int(input())
 current = list(map(int, input().strip()))
 expect = list(map(int, input().strip()))
 
-# print(current)
-# print(expect)
+
+def solve(push_first):
+    arr = current[:]
+    cnt = 0
+    if push_first:
+        for i in range(2):
+            arr[i] ^= 1     # XOR
+        cnt = 1
+    for i in range(1, N):
+        if arr[i - 1] != expect[i - 1]:
+            arr[i - 1] ^= 1
+            arr[i] ^= 1
+            if i + 1 < N:
+                arr[i + 1] ^= 1
+            cnt += 1
+    return cnt if arr == expect else float('inf')
 
 
-# def dfs(array, idx, cnt):
-#     global best
-#     if array == expect:
-#         best = min(best, cnt)
-#         return
-#     if idx >= N:
-#         return
-#     dfs(array, idx + 1, cnt)
-#     for i in range(idx - 1, idx + 2):
-#         if i < 0 or i >= N:
-#             continue
-#         if array[i]:
-#             array[i] = 0
-#         else:
-#             array[i] = 1
-#     dfs(array, idx + 1, cnt + 1)
-
-
-# best = float('inf')
-# dfs(current, 0, 0)
-# print(best)
+best = min(solve(False), solve(True))
+print(best if best != float('inf') else -1)
